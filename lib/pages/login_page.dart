@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalogue/utils/routes.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Center(
+      child: SingleChildScrollView(
         child: Column(
           children: [
             Image.asset(
               "img/itachi.jpg",
               fit: BoxFit.cover,
+              height: 300,
             ),
             SizedBox(
               height: 20.0,
@@ -17,7 +19,7 @@ class LoginPage extends StatelessWidget {
             Text(
               'Welcome',
               style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                   color: Colors.blue),
             ),
@@ -53,14 +55,14 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: 40.0,
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        print("btn");
+                        Navigator.pushNamed(context, MyRoutes.homeRoute);
                       },
                       child: Text("Login"),
-                      style: TextButton.styleFrom(),
+                      style: TextButton.styleFrom(minimumSize: Size(100, 40)),
                     ),
                   ],
                 )),
