@@ -1,0 +1,44 @@
+{
+    "products": [
+        {
+            "id": "code1",
+            "name": "iphone1",
+            "desc": "apple desc",
+            "price": 999,
+            "color": "#33505a",
+            "image": "https://m.media-amazon.com/images/I/41xssMLI2DL._AC_SY780_.jpg"
+        },
+        {
+            "id": "code2",
+            "name": "iphone2",
+            "desc": "apple desc",
+            "price": 699,
+            "color": "#00ac51",
+            "image": "https://m.media-amazon.com/images/I/317JiGToz-L.jpg"
+        },
+        {
+            "id": "code3",
+            "name": "iphone3",
+            "desc": "apple desc",
+            "price": 1099,
+            "color": "#e0bfae",
+            "image": "https://m.media-amazon.com/images/I/31jQ91XUDhS.jpg"
+        },
+        {
+            "id": "code4",
+            "name": "iphone4",
+            "desc": "apple desc",
+            "price": 999,
+            "color": "#33505a",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAUkUUx3xtPUDgP7bmk0nUp59qpRP8oUSHrw&usqp=CAU"
+        },
+        {
+            "id": "code5",
+            "name": "iphone5",
+            "desc": "apple desc",
+            "price": 999,
+            "color": "#33505a",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh5xOU0sPtu3ACW4cegQBX10A262MDwXB6rQ&usqp=CAU"
+        }
+    ]
+}
