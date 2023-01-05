@@ -1,13 +1,15 @@
 class CatalogModel {
-  static List<Item> items = [
-    Item(
-        id: 1,
-        name: "iphone1",
-        desc: "apple desc",
-        price: 999,
-        color: "#33505a",
-        image: "https://m.media-amazon.com/images/I/41xssMLI2DL._AC_SY780_.jpg")
-  ];
+  // static List<Item> items = [
+  //   Item(
+  //       id: 1,
+  //       name: "iphone1",
+  //       desc: "apple desc",
+  //       price: 999,
+  //       color: "#33505a",
+  //       image: "https://m.media-amazon.com/images/I/41xssMLI2DL._AC_SY780_.jpg")
+  // ];
+
+  static List<Item> items = [];
 }
 
 class Item {
