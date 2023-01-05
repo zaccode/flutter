@@ -1,5 +1,5 @@
 class CatalogModel {
-  static final items = [
+  static List<Item> items = [
     Item(
         id: 1,
         name: "iphone1",
@@ -25,14 +25,26 @@ class Item {
       this.price = 0.0,
       this.color = "",
       this.image = ""});
-}
 
-// final products = [
-//   Item(
-//       id: 1,
-//       name: "iphone1",
-//       desc: "apple desc",
-//       price: 999,
-//       color: "#33505a",
-//       image: "https://m.media-amazon.com/images/I/41xssMLI2DL._AC_SY780_.jpg")
-// ];
+  factory Item.fromMap(Map<String, dynamic> map) {
+    return Item(
+      //convert the String to Map/object for JsonDecoding
+      id: map["id"],
+      name: map["name"],
+      desc: map["desc"],
+      price: map["price"],
+      color: map["color"],
+      image: map["image"],
+    );
+  }
+
+  toMap() => {
+        //used to for convert the object to string for jsonEncoding
+        "id": id,
+        "name": name,
+        "desc": desc,
+        "price": price,
+        "color": color,
+        "image": image,
+      };
+}
