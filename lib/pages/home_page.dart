@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_catalogue/models/catalog.dart';
+import 'package:flutter_catalogue/pages/home_detail_page.dart';
 import 'package:flutter_catalogue/widgets/drawer.dart';
 import 'package:flutter_catalogue/widgets/item_widget.dart';
 import 'package:flutter_catalogue/widgets/themes.dart';
@@ -53,9 +54,7 @@ class _HomePageState extends State<HomePage> {
                 if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
                   CatalogList().expand()
                 else
-                  Center(
-                    child: CircularProgressIndicator(),
-                  )
+                  CircularProgressIndicator().centered().py16().expand(),
               ],
             ),
           ),
@@ -82,7 +81,14 @@ class CatalogList extends StatelessWidget {
       itemCount: CatalogModel.items.length,
       itemBuilder: (context, index) {
         final catalog = CatalogModel.items[index];
-        return CatalogItem(catalog: catalog);
+        return InkWell(
+            onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeDetailPage(catalog: catalog),
+                  ),
+                ),
+            child: CatalogItem(catalog: catalog));
       },
     );
   }
@@ -98,28 +104,30 @@ class CatalogItem extends StatelessWidget {
     return VxBox(
       child: Row(
         children: [
-          CatalogImage(image: catalog.image),
+          Hero(
+              tag: Key(catalog.id.toString()),
+              child: CatalogImage(image: catalog.image)),
           Expanded(
               child: Column(
             children: [
-              catalog.name.text.lg.color(MyTheme.darkBluishColor).bold.make(),
-              catalog.desc.text.textStyle(context.captionStyle).make(),
+              catalog.name.text.xl3.color(MyTheme.darkBluishColor).bold.make(),
+              catalog.desc.text.lg.textStyle(context.captionStyle).make(),
               10.heightBox,
               ButtonBar(
                 alignment: MainAxisAlignment.spaceBetween,
                 buttonPadding: EdgeInsets.zero,
                 children: [
-                  "\$${catalog.price}".text.make(),
+                  "\$${catalog.price}".text.xl2.make(),
                   ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(MyTheme.darkBluishColor),
                         shape: MaterialStateProperty.all(StadiumBorder())),
-                    child: "Buy".text.make(),
+                    child: "Buy".text.xl.make(),
                   )
                 ],
-              ).pOnly(right: 8.0)
+              ).pOnly(right: 9.0)
             ],
           ))
         ],
