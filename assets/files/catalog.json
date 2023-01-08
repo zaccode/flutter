@@ -39,6 +39,22 @@
             "price": 5999,
             "color": "#1c1c1c",
             "image": "https://m.media-amazon.com/images/I/71gm8v4uPBL._SL1500_.jpg"
+        },
+        {
+            "id": 4,
+            "name": "iphone4",
+            "desc": "apple desc",
+            "price": 4999,
+            "color": "#7c95eb",
+            "image": "https://rukminim1.flixcart.com/image/416/416/kg8avm80/mobile/j/f/9/apple-iphone-12-dummyapplefsn-original-imafwg8dkyh2zgrh.jpeg?q=70"
+        },
+        {
+            "id": 5,
+            "name": "iphone5",
+            "desc": "apple desc",
+            "price": 5999,
+            "color": "#1c1c1c",
+            "image": "https://m.media-amazon.com/images/I/71gm8v4uPBL._SL1500_.jpg"
         }
     ]
 }

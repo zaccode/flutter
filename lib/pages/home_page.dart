@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_catalogue/models/catalog.dart';
 import 'package:flutter_catalogue/pages/home_detail_page.dart';
+import 'package:flutter_catalogue/utils/routes.dart';
 import 'package:flutter_catalogue/widgets/drawer.dart';
 import 'package:flutter_catalogue/widgets/item_widget.dart';
 import 'package:flutter_catalogue/widgets/themes.dart';
@@ -36,13 +38,22 @@ class _HomePageState extends State<HomePage> {
     CatalogModel.items = List.from(productsData)
         .map<Item>((item) => Item.fromMap(item))
         .toList();
-    setState(() {});
+    setState(() {}); //for continuous data in the list
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: MyTheme.creamColor,
+        // backgroundColor: Theme.of(context).canvasColor, //not using velocity
+        backgroundColor: context.canvasColor, //using velocity
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+          backgroundColor: context.theme.buttonColor,
+          child: Icon(
+            CupertinoIcons.cart,
+            color: Colors.white,
+          ),
+        ),
         body: SafeArea(
           //this property is use to safe our code of battery other icons
           child: Container(
@@ -67,10 +78,10 @@ class CatalogHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        "Catalog App".text.xl3.bold.color(MyTheme.darkBluishColor).make(),
-        "Trending Product".text.xl.make(),
+        "Catalog App".text.xl5.color(context.theme.accentColor).make(),
+        "Trending Product".text.xl.make().pOnly(left: 9.0),
       ],
-    );
+    ).pOnly(bottom: 20);
   }
 }
 
@@ -110,8 +121,12 @@ class CatalogItem extends StatelessWidget {
           Expanded(
               child: Column(
             children: [
-              catalog.name.text.xl3.color(MyTheme.darkBluishColor).bold.make(),
-              catalog.desc.text.lg.textStyle(context.captionStyle).make(),
+              catalog.name.text.xl2
+                  .color(context.accentColor)
+                  .bold
+                  .make()
+                  .py8(),
+              catalog.desc.text.textStyle(context.captionStyle).make(),
               10.heightBox,
               ButtonBar(
                 alignment: MainAxisAlignment.spaceBetween,
@@ -121,10 +136,12 @@ class CatalogItem extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(MyTheme.darkBluishColor),
+                        backgroundColor: MaterialStateProperty.all(
+                            context.theme.buttonColor),
+                        // backgroundColor:
+                        //     MaterialStateProperty.all(MyTheme.darkBluishColor),
                         shape: MaterialStateProperty.all(StadiumBorder())),
-                    child: "Buy".text.xl.make(),
+                    child: "Add to cart".text.xl.make(),
                   )
                 ],
               ).pOnly(right: 9.0)
@@ -132,7 +149,12 @@ class CatalogItem extends StatelessWidget {
           ))
         ],
       ),
-    ).white.square(120).make().py16(); //VxBox is similar of Container
+    )
+        .color(context.cardColor)
+        .square(120)
+        .rounded
+        .make()
+        .py16(); //VxBox is similar of Container
   }
 }
 
@@ -146,7 +168,7 @@ class CatalogImage extends StatelessWidget {
         .box
         .rounded
         .p16
-        .color(MyTheme.creamColor)
+        .color(context.canvasColor)
         .make()
         .p8()
         .w24(context);

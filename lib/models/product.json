@@ -39,6 +39,22 @@
             "price": 999,
             "color": "#33505a",
             "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh5xOU0sPtu3ACW4cegQBX10A262MDwXB6rQ&usqp=CAU"
+        },
+        {
+            "id": "code6",
+            "name": "iphone6",
+            "desc": "apple desc",
+            "price": 6999,
+            "color": "#33505a",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh5xOU0sPtu3ACW4cegQBX10A262MDwXB6rQ&usqp=CAU"
+        },
+        {
+            "id": "code5",
+            "name": "iphone5",
+            "desc": "apple desc",
+            "price": 999,
+            "color": "#33505a",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh5xOU0sPtu3ACW4cegQBX10A262MDwXB6rQ&usqp=CAU"
         }
     ]
 }
