@@ -9,14 +9,20 @@ class CatalogModel {
   //       image: "https://m.media-amazon.com/images/I/41xssMLI2DL._AC_SY780_.jpg")
   // ];
 
+//This code is single turn code this is initial one time only
+  static final cartModel = CatalogModel._internal();
+  CatalogModel._internal();
+  factory CatalogModel() => cartModel;
+  //---
+
   static List<Item> items = [];
 
   //Get Item by ID
-  static Item getById(int id) =>
+  Item getById(int id) =>
       items.firstWhere((element) => element.id == id, orElse: null);
 
   //Get Item by position
-  static Item getByPosition(int pos) => items[pos];
+  Item getByPosition(int pos) => items[pos];
 }
 
 class Item {

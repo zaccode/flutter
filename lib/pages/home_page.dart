@@ -1,15 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_catalogue/models/carts.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:flutter_catalogue/models/catalog.dart';
 import 'package:flutter_catalogue/pages/home_detail_page.dart';
 import 'package:flutter_catalogue/utils/routes.dart';
 import 'package:flutter_catalogue/widgets/drawer.dart';
 import 'package:flutter_catalogue/widgets/item_widget.dart';
 import 'package:flutter_catalogue/widgets/themes.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -91,8 +94,8 @@ class CatalogList extends StatelessWidget {
       shrinkWrap: true,
       itemCount: CatalogModel.items.length,
       itemBuilder: (context, index) {
-        // final catalog = CatalogModel.items[index];
-        final catalog = CatalogModel.getByPosition(index);
+        final catalog = CatalogModel.items[index];
+        // final catalog = CatalogModel.getByPosition(index);
         return InkWell(
             onTap: () => Navigator.push(
                   context,
@@ -103,6 +106,40 @@ class CatalogList extends StatelessWidget {
                 ),
             child: CatalogItem(catalog: catalog));
       },
+    );
+  }
+}
+
+class _AddToCart extends StatefulWidget {
+  final Item catalog;
+  const _AddToCart({
+    Key? key,
+    required this.catalog,
+  }) : super(key: key);
+
+  @override
+  State<_AddToCart> createState() => _AddToCartState();
+}
+
+class _AddToCartState extends State<_AddToCart> {
+  bool isAdded = false;
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        isAdded = isAdded.toggle();
+        final _catalog = CatalogModel();
+        final _cart = CartModel();
+        // _cart.catalog = _catalog;
+        _cart.catalog = _catalog;
+        _cart.add(widget.catalog);
+        setState(() {});
+      },
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(context.theme.buttonColor),
+          // backgroundColor:
+          //     MaterialStateProperty.all(MyTheme.darkBluishColor),
+          shape: MaterialStateProperty.all(StadiumBorder())),
+      child: isAdded ? Icon(Icons.done) : "Add to cart".text.xl.make(),
     );
   }
 }
@@ -135,16 +172,7 @@ class CatalogItem extends StatelessWidget {
                 buttonPadding: EdgeInsets.zero,
                 children: [
                   "\$${catalog.price}".text.xl2.make(),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            context.theme.buttonColor),
-                        // backgroundColor:
-                        //     MaterialStateProperty.all(MyTheme.darkBluishColor),
-                        shape: MaterialStateProperty.all(StadiumBorder())),
-                    child: "Add to cart".text.xl.make(),
-                  )
+                  _AddToCart(catalog: catalog),
                 ],
               ).pOnly(right: 9.0)
             ],
