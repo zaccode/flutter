@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalogue/pages/cart_page.dart';
 import 'package:flutter_catalogue/pages/login_page.dart';
+import 'package:flutter_catalogue/pages/signup_page.dart';
 import 'package:flutter_catalogue/widgets/themes.dart';
 
 import 'pages/home_page.dart';
@@ -20,10 +21,11 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.loginRoute,
+      initialRoute: MyRoutes.homeRoute,
       routes: {
         "/": (context) => LoginPage(),
         MyRoutes.loginRoute: (context) => LoginPage(),
+        MyRoutes.signupRoute: (context) => SignupPage(),
         MyRoutes.homeRoute: (context) => HomePage(),
         MyRoutes.cartRoute: (context) => CartPage(),
       },

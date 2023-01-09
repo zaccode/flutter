@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_catalogue/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class LoginPage extends StatefulWidget {
+class SignupPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignupPageState createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   @override
   String name = "";
   bool changeButton = false;
 
   final formkey = GlobalKey<FormState>();
 
-  Movetohome(BuildContext context) async {
+  Movetologin(BuildContext context) async {
     if (formkey.currentState!.validate()) {
       setState(() {
         changeButton = true;
       });
       await Future.delayed(Duration(seconds: 2));
-      await Navigator.pushNamed(context, MyRoutes.homeRoute);
+      await Navigator.pushNamed(context, MyRoutes.loginRoute);
       setState(() {
         changeButton = false;
       });
@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                       TextFormField(
                         decoration: InputDecoration(
                           hintText: "Enter You Username",
-                          labelText: "Username and Email",
+                          labelText: "Username",
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -72,10 +72,37 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
                       TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "Enter You Email",
+                          labelText: "Email",
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Email cannot be empty";
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
                         obscureText: true,
                         decoration: InputDecoration(
                           hintText: "Enter You Password",
                           labelText: "Password",
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Password cannot be empty";
+                          } else if (value.length < 6) {
+                            return "Password should as long as greter than 6 letters";
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: "Enter You Password",
+                          labelText: "Confirm Password",
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -94,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius:
                             BorderRadius.circular(changeButton ? 50 : 8),
                         child: InkWell(
-                          onTap: () => Movetohome(context),
+                          onTap: () => Movetologin(context),
                           // Ink or Conatiner both are same but ink provides additional decoration feature rather than container
                           child: AnimatedContainer(
                             duration: Duration(seconds: 2),
@@ -108,13 +135,12 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Colors.white,
                                   )
                                 : Text(
-                                    'Login',
+                                    'Signup',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
                                   ),
-
                             decoration: BoxDecoration(
                                 // color: Colors.deepPurple,
                                 // shape: changeButton
@@ -131,13 +157,13 @@ class _LoginPageState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             // MainAxisAlignment:MainAxisAlignment.Center,
-                            'create account ?'.text.make(),
+                            'Already have an account ?'.text.make(),
                             TextButton(
                                 onPressed: () {
                                   Navigator.pushNamed(
-                                      context, MyRoutes.signupRoute);
+                                      context, MyRoutes.loginRoute);
                                 },
-                                child: 'signup'
+                                child: 'login'
                                     .text
                                     .color(context.accentColor)
                                     .make())
